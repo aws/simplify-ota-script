@@ -1,6 +1,6 @@
   # AWS-Simplify-OTA-Script
 This repository provides a command line interface wizard for easily onboarding IoT things to AWS IoT core, thing group management, and OTA job creation.
-This library is distributed under the Apache-2.0 Open Source License.
+This library is distributed under the [Apache-2.0 Open Source License](https://github.com/aws/simplify-ota-script/blob/main/LICENSE).
 
 ### Overview
 
