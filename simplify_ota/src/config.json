@@ -1,0 +1,31 @@
+{
+    "files": [
+        {
+            "fileName": "/Users/aezaba/Downloads/FreeRTOSv202212.01/FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth/demo_config.h",
+            "fileVersion": "",
+            "fileLocation": {
+                "s3Location": {
+                    "bucket": "simplify-ota-workflow-bucket",
+                    "key": "/Users/aezaba/Downloads/FreeRTOSv202212.01/FreeRTOS-Plus/Demo/coreMQTT_Windows_Simulator/MQTT_Mutual_Auth/demo_config.h",
+                    "version": "ETCY82phOC7aGwSC1be_Uif5Cd8zCDb7"
+                }
+            },
+            "codeSigning": {
+                "startSigningJobParameter": {
+                    "signingProfileName": "OTA_Code_signer",
+                    "destination": {
+                        "s3Destination": {
+                            "bucket": "simplify-ota-workflow-bucket"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "otaUpdateId": "d",
+    "targetSelection": "CONTINUOUS",
+    "targets": [
+        "arn:aws:iot:us-east-1:437572101063:thinggroup/MyOTAThingGroup"
+    ],
+    "roleArn": "arn:aws:iam::437572101063:role/OTA_demo_role"
+}

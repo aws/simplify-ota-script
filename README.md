@@ -15,7 +15,6 @@ This package currently has 4 source files:
 
 #### Install Python3
 
-
 #### Create AWS Account
 Follow the instructions [here](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) to create an AWS account.
 
@@ -45,5 +44,7 @@ If you generate a certificate through the tool, you will have two files in your 
 When you are ready, simply run 
 
 `python3 run-ota-update.py`
+
+Which will create the OTA update. You should go into your account or use the CLI to view the status of the update.
 
 Which will create the OTA update. You should go into your account or use the CLI to view the status of the update.
