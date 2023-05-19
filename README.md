@@ -46,5 +46,3 @@ When you are ready, simply run
 `python3 run-ota-update.py`
 
 Which will create the OTA update. You should go into your account or use the CLI to view the status of the update.
-
-Which will create the OTA update. You should go into your account or use the CLI to view the status of the update.
