@@ -20,7 +20,7 @@ def cert_gen(aws_proxy, email_address="emailAddress"):
     with open("cert_config.txt", "w", encoding="utf-8") as cert_config:
         cert_config.write(result)
 
-    os.system("openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 \
+    os.system("/opt/homebrew/opt/openssl@3/bin/openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 \
                -pkeyopt ec_param_enc:named_curve -outform PEM -out ecdsasigner-priv-key.pem")
     os.system("openssl req -new -x509 -config cert_config.txt -extensions my_exts \
                -nodes -days 365 -key ecdsasigner-priv-key.pem -out ecdsasigner.crt")
@@ -113,7 +113,7 @@ def setup_ota_update():
                 print(
                     f"Successfully created a new thing named {new_thing_group_name}")
                 user_has_things_to_add = True
-                while(user_has_things_to_add):
+                while (user_has_things_to_add):
                     print("Select a thing to add to the thing group")
                     iot_things = utils.PaginationOnKey(
                         aws_proxy.list_iot_things(), 'thingName')
@@ -125,13 +125,13 @@ def setup_ota_update():
                     aws_proxy.thing_group_arn = response['thingGroupArn']
                     aws_proxy.thing_name = selected_thing['thingName']
                     aws_proxy.thing_arn = selected_thing['thingArn']
-                    aws_proxy.add_thing_to_thing_group(new_thing_group_name, aws_proxy.thing_group_arn, aws_proxy.thing_name, aws_proxy.thing_arn)
+                    aws_proxy.add_thing_to_thing_group(
+                        new_thing_group_name, aws_proxy.thing_group_arn, aws_proxy.thing_name, aws_proxy.thing_arn)
                     print("Do you want to add another thing to the thing group?")
                     choice = utils.handle_y_n()
                     if not choice:
                         user_has_things_to_add = False
 
-                
             else:
                 print("Something went wrong while creating a new thing group.")
                 sys.exit()
@@ -248,7 +248,8 @@ def setup_ota_update():
     data['otaUpdateId'] = job_name
     data['roleArn'] = aws_proxy.ota_role_arn
     data['targets'] = []
-    data['targets'].append(aws_proxy.thing_arn) if aws_proxy.thing_arn else data['targets'].append(aws_proxy.thing_group_arn)
+    data['targets'].append(aws_proxy.thing_arn) if aws_proxy.thing_arn else data['targets'].append(
+        aws_proxy.thing_group_arn)
     data['targetSelection'] = aws_proxy.target_selection
     data['files'][0]['fileLocation']['s3Location']['bucket'] = aws_proxy.s3_bucket
     data['files'][0]['fileLocation']['s3Location']['key'] = aws_proxy.s3_object_key
