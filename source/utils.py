@@ -38,6 +38,9 @@ class PaginationOnKey:
                     print("\nYou have reached the last page, there is no next page\n")
                 self.cur_idx = min(self.cur_idx + self.page_size, len(self.input_list) - self.page_size)
             else:
+                if not user_input.isdigit():
+                    print("Number input expected, please try again")
+                    continue
                 user_input = int(user_input)
 
                 if not self.cur_idx <= user_input < self.cur_idx + self.page_size:
