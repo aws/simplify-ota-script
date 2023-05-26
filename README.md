@@ -13,7 +13,7 @@ This package currently has 4 source files:
 
 ### Prerequisites
 
-#### Install Python3
+#### [Install Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 
 #### Create AWS Account
 Follow the instructions [here](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) to create an AWS account.
@@ -39,7 +39,7 @@ After configuring your CLI credentials in your preferred method, simply run the 
 
 This will take you through setting up the infrastructure for an OTA update. You will be prompted if you want to create a new resource or use an existing one for each needed resource, such as IAM roles, S3 buckets, Code signing profiles, etc.
 
-If you generate a certificate through the tool, you will have two files in your directory, `ecdsasigner-priv-key.pem` and `ecdsasigner.crt`. You should make sure that your device is signed with the private key file, or else the OTA update will not succeed.
+If you generate an OpenSSL certificate through the wizard, you will have two files in your directory, `ecdsasigner-priv-key.pem` and `ecdsasigner.crt`. You should make sure that your device is signed with the private key file, or else the OTA update will not succeed.
 
 When you are ready, simply run 
 
