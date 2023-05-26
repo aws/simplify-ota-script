@@ -35,6 +35,7 @@ class AwsOperations:
         self._aws_iam_client = boto3.client('iam')
         self._aws_acm_client = boto3.client('acm')
         self._aws_signer_client = boto3.client('signer')
+        self._aws_sts_client = boto3.client('sts')
 
         # Every object we need to execute the OTA update
         # These will be stored here and then moved to config.json
@@ -47,6 +48,8 @@ class AwsOperations:
         self.cert_arn = ""
         self.target_selection = ""
         self.signing_profile_name = ""
+
+        self.account_id = self._aws_sts_client.get_caller_identity()['Account']
 
     def list_s3_buckets(self):
         """Wrapper for https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/list_buckets.html """
@@ -139,6 +142,23 @@ class AwsOperations:
         """ Wrapper for https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam/client/list_roles.html#list-roles """
         return self._aws_iam_client.list_roles()['Roles']
 
+    def create_json_policy(self, account_id, role_name):
+        """ Helper method that creates a JSON policy for use in initial IAM role setup """
+        iam_policy = json.dumps({
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:GetRole",
+                        "iam:PassRole"
+                    ],
+                    "Resource": f"arn:aws:iam::{account_id}:role/{role_name}"
+                }
+            ]
+        })
+        return iam_policy
+
     def create_iam_role(self, role_name):
         """ Wrapper for https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam/client/create_role.html#create-role """
 
@@ -169,6 +189,12 @@ class AwsOperations:
         response = self._aws_iam_client.attach_role_policy(
             RoleName=role_name,
             PolicyArn='arn:aws:iam::aws:policy/service-role/AmazonFreeRTOSOTAUpdate'
+        )
+        # Attach the inline policy created to the role
+        response = self._aws_iam_client.put_role_policy(
+            RoleName=role_name,
+            PolicyName='OTAPolicy',
+            PolicyDocument=self.create_json_policy(self.account_id, role_name)
         )
 
         return response['ResponseMetadata']['HTTPStatusCode'] == 200

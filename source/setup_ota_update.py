@@ -46,7 +46,8 @@ def setup_ota_update():
 
     if choice == new_bucket:
         print("Enter an S3 bucket name (S3 bucket names can consist only of lowercase letters, numbers, dots (.), and hyphens (-))")
-        new_s3_bucket_name = input()
+        print("The name will be prefixed with \'afr-ota-\'.")
+        new_s3_bucket_name = "afr-ota-" + input()
 
         if aws_proxy.create_s3_bucket(new_s3_bucket_name):
             print("Successfully created a new bucket")
