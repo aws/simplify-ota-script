@@ -15,6 +15,14 @@ This package currently has 4 source files:
 
 #### [Install Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 
+#### Install OpenSSL
+```
+brew update
+brew install openssl
+echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc (or ~/.bashrc)
+source ~/.zshrc (or ~/.bashrc)
+```
+
 #### Create AWS Account
 Follow the instructions [here](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) to create an AWS account.
 
