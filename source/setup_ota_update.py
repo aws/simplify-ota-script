@@ -20,7 +20,7 @@ def cert_gen(aws_proxy, email_address="emailAddress"):
     with open("cert_config.txt", "w", encoding="utf-8") as cert_config:
         cert_config.write(result)
 
-    os.system("/opt/homebrew/opt/openssl@3/bin/openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 \
+    os.system("openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 \
                -pkeyopt ec_param_enc:named_curve -outform PEM -out ecdsasigner-priv-key.pem")
     os.system("openssl req -new -x509 -config cert_config.txt -extensions my_exts \
                -nodes -days 365 -key ecdsasigner-priv-key.pem -out ecdsasigner.crt")
