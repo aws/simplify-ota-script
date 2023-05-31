@@ -13,14 +13,25 @@ This package currently has 4 source files:
 
 ### Prerequisites
 
-#### [Install Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
+#### [Install Python](https://www.python.org/downloads/)
+Once Python is installed, run ```pip install pipenv``` to install pipenv, enabling you to optionally create a virtual environment for the project via ```pipenv shell``` and use the pipfile to install dependencies via the ```pipenv install``` command.
 
 #### Install OpenSSL
+
+MacOS OpenSSL Installation
 ```
 brew update
 brew install openssl
-echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc (or ~/.bashrc)
-source ~/.zshrc (or ~/.bashrc)
+echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Ubuntu OpenSSL Installation
+```
+sudo apt update
+sudo apt install openssl
+echo 'export PATH="/usr/bin/openssl:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 #### Create AWS Account
