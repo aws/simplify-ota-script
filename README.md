@@ -18,7 +18,7 @@ Once Python is installed, run ```pip install pipenv``` to install pipenv, enabli
 
 #### Install OpenSSL
 
-MacOS OpenSSL Installation
+MacOS OpenSSL Installation:
 ```
 brew update
 brew install openssl
@@ -26,7 +26,7 @@ echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-Ubuntu OpenSSL Installation
+Ubuntu OpenSSL Installation:
 ```
 sudo apt update
 sudo apt install openssl
