@@ -30,8 +30,6 @@ Ubuntu OpenSSL Installation:
 ```
 sudo apt update
 sudo apt install openssl
-echo 'export PATH="/usr/bin/openssl:$PATH"' >> ~/.bashrc
-source ~/.bashrc
 ```
 
 #### Create AWS Account
